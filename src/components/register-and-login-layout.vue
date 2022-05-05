@@ -17,4 +17,12 @@
 </template>
 <script setup lang="ts">
 import appLogoVue from './app-logo.vue';
+import { useAPI } from '../store/use-api';
+import { useRouter } from 'vue-router';
+import { onMounted } from 'vue';
+onMounted(() => {
+    if (useAPI().isLogin) {
+        useRouter().replace({ name: 'home' });
+    }
+});
 </script>
