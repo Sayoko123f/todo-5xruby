@@ -1,13 +1,22 @@
 import { api } from './api';
 import { defineStore } from 'pinia';
 
+interface TodoItem {
+    completed_at: any;
+    content: string;
+    id: string;
+}
+
 export const useAPI = defineStore('api', {
     state: () => ({
         jwt: JSON.parse(localStorage.getItem('jwt') || '""') as string,
         isLogin: JSON.parse(
             localStorage.getItem('login') || 'false'
         ) as boolean,
-        nickname: JSON.parse(localStorage.getItem('nickname') || '""') as string,
+        nickname: JSON.parse(
+            localStorage.getItem('nickname') || '""'
+        ) as string,
+        todolist: [] as Array<TodoItem>,
     }),
     actions: {
         async updateLoginStatus() {
@@ -48,5 +57,27 @@ export const useAPI = defineStore('api', {
             }
         },
         register: api.register,
+        async fetchTodolist() {
+            try {
+                const res = await api.getTodos(this.jwt);
+                console.log(res.data);
+                this.todolist = res.data.todos;
+            } catch (err) {
+                console.warn(err);
+                this.todolist = [];
+            }
+        },
+        createTodo(content: string) {
+            return api.createTodo(this.jwt, content);
+        },
+        toggleTodo(id: string) {
+            return api.toggleTodo(this.jwt, id);
+        },
+        deleteTodo(id: string) {
+            return api.deleteTodo(this.jwt, id);
+        },
+        updateTodo(id: string, content: string) {
+            return api.updateTodo(this.jwt, id, content);
+        },
     },
 });

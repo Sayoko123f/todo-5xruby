@@ -17,4 +17,29 @@ export const api = {
     register(email: string, nickname: string, password: string) {
         return req.post('/users', { user: { email, nickname, password } });
     },
+    getTodos(Authorization: string) {
+        return req.get('/todos', { headers: { Authorization } });
+    },
+    createTodo(Authorization: string, content: string) {
+        return req.post(
+            '/todos',
+            { todo: { content } },
+            { headers: { Authorization } }
+        );
+    },
+    updateTodo(Authorization: string, id: string, content: string) {
+        return req.put(
+            `/todos/${id}`,
+            { todo: { content } },
+            { headers: { Authorization } }
+        );
+    },
+    deleteTodo(Authorization: string, id: string) {
+        return req.delete(`/todos/${id}`, { headers: { Authorization } });
+    },
+    toggleTodo(Authorization: string, id: string) {
+        return req.patch(`/todos/${id}/toggle`, null, {
+            headers: { Authorization },
+        });
+    },
 };
