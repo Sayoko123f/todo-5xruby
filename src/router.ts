@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import loginView from './components/login-view.vue';
 import homeView from './components/home-view.vue';
 import registerView from './components/register-view.vue';
@@ -10,5 +10,5 @@ const routes = [
 
 export const router = createRouter({
     routes,
-    history: createWebHistory(),
+    history: createWebHashHistory(),
 });
