@@ -134,6 +134,9 @@ const showingTodos = computed(() => {
     }
 });
 onMounted(async () => {
+    if (!api.isLogin) {
+        return;
+    }
     await api.fetchTodolist();
 });
 

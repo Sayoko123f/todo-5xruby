@@ -32,7 +32,6 @@ export const useAPI = defineStore('api', {
                 localStorage.setItem('login', JSON.stringify(true));
                 localStorage.setItem('nickname', JSON.stringify(this.nickname));
                 localStorage.setItem('jwt', JSON.stringify(this.jwt));
-                console.log(this.jwt);
             } catch (err) {
                 this.isLogin = false;
             } finally {
@@ -43,16 +42,16 @@ export const useAPI = defineStore('api', {
             try {
                 await api.userSignOut(this.jwt);
                 console.log('Logout Success');
+            } catch (err) {
+                console.warn('Logout Error');
+                console.warn(err);
+            } finally {
                 this.isLogin = false;
                 this.jwt = '';
                 this.nickname = '';
                 localStorage.setItem('login', JSON.stringify(false));
                 localStorage.setItem('nickname', JSON.stringify(''));
                 localStorage.setItem('jwt', JSON.stringify(''));
-            } catch (err) {
-                console.warn('Logout Error');
-                console.warn(err);
-            } finally {
                 return !this.isLogin;
             }
         },
@@ -60,7 +59,6 @@ export const useAPI = defineStore('api', {
         async fetchTodolist() {
             try {
                 const res = await api.getTodos(this.jwt);
-                console.log(res.data);
                 this.todolist = res.data.todos;
             } catch (err) {
                 console.warn(err);
