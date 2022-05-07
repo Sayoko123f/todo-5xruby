@@ -12,6 +12,7 @@
                         class="form-input mt-1 block h-[2.9375rem] w-full rounded-[0.625rem] border-none py-[0.75rem] px-4 font-medium placeholder-[#9F9A91] outline-none"
                         placeholder="請輸入Email"
                         v-model="user.email"
+                        maxlength="400"
                 /></label>
                 <p
                     class="mt-1 mb-4 text-sm text-[#D87355]"
@@ -21,10 +22,11 @@
                 </p>
                 <label class="text-sm"
                     >密碼<input
-                        type="text"
+                        type="password"
                         class="form-input mt-1 block h-[2.9375rem] w-full rounded-[0.625rem] border-none py-[0.75rem] font-medium placeholder-[#9F9A91] outline-none"
                         placeholder="請輸入密碼"
                         v-model="user.password"
+                        maxlength="30"
                 /></label>
                 <p
                     class="mt-1 mb-4 text-sm text-[#D87355]"
@@ -90,8 +92,6 @@ function gotoRegisterPage() {
 
 function validInput(): boolean {
     let valid = true;
-    console.log(user.email);
-    console.log(user.password);
     if (!validateEmail(user.email)) {
         tips.email = '此欄位不可為空';
         valid = false;
@@ -122,7 +122,7 @@ function handleLoginButtonClick() {
                 }, 900);
             } else {
                 console.log('login failed.');
-                tips.email='登入失敗，可能是 Email 或密碼不對'
+                tips.email = '登入失敗，可能是 Email 或密碼不對';
             }
         })
         .finally(() => {

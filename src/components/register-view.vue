@@ -13,7 +13,8 @@
                         type="text"
                         class="form-input mt-1 mb-4 block h-[2.9375rem] w-full rounded-[0.625rem] border-none py-[0.75rem] px-4 font-medium placeholder-[#9F9A91] outline-none"
                         placeholder="請輸入Email"
-                        v-model="user.email" /></label
+                        v-model="user.email"
+                        maxlength="400" /></label
                 ><label class="text-sm"
                     >您的暱稱
                     <span class="text-red-500">{{ tips.nickname }}</span
@@ -21,22 +22,25 @@
                         type="text"
                         class="form-input mt-1 mb-4 block h-[2.9375rem] w-full rounded-[0.625rem] border-none py-[0.75rem] font-medium placeholder-[#9F9A91] outline-none"
                         placeholder="請輸入您的暱稱"
-                        v-model="user.nickname" /></label
+                        v-model="user.nickname"
+                        maxlength="20" /></label
                 ><label class="text-sm"
                     >密碼 <span class="text-red-500">{{ tips.password }}</span
                     ><input
-                        type="text"
+                        type="password"
                         class="form-input mt-1 mb-4 block h-[2.9375rem] w-full rounded-[0.625rem] border-none py-[0.75rem] font-medium placeholder-[#9F9A91] outline-none"
                         placeholder="請輸入密碼"
-                        v-model="user.password" /></label
+                        v-model="user.password"
+                        maxlength="30" /></label
                 ><label class="text-sm"
                     >再次輸入密碼
                     <span class="text-red-500">{{ tips.password2 }}</span
                     ><input
-                        type="text"
+                        type="password"
                         class="form-input mt-1 mb-6 block h-[2.9375rem] w-full rounded-[0.625rem] border-none py-[0.75rem] font-medium placeholder-[#9F9A91] outline-none"
                         placeholder="請再次輸入密碼"
                         v-model="password2"
+                        maxlength="30"
                 /></label>
             </div>
             <div class="mb-3 text-center">
